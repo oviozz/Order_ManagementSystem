@@ -1,3 +1,7 @@
+import os
+import shutil
+from pathlib import Path
+
 
 class RegisterCheck:
 
@@ -12,13 +16,25 @@ class RegisterCheck:
         return error_handle.setText('Please fill out the info')
 
 
+def check_sign_up_form(form, userdir):
+    if not os.path.exists(userdir):
+        os.mkdir(userdir)
+    if not os.path.exists(userdir / "sign_up_form.txt"):
+        shutil.copy(form, userdir)
+    return userdir / "sign_up_form.txt"
+
 class PasswordCheck:
+
+    form = Path(__file__).parent / "sign_up_form.txt"
+    userdir = Path.home() / "Order_ManagementSystem"
+    sign_up_form = check_sign_up_form(form, userdir)
+
     def sign_up_info(self, name, password):
-        with open("sign_up_form", "r+") as store:
+        with open(self.sign_up_form, "a+") as store:
             store.write(f'{name.lower()}:{password.lower()}')
 
     def login_check(self, name, password,error_handle):
-        with open('sign_up_form', 'r') as store:
+        with open(self.sign_up_form, 'r') as store:
             for user in store.readlines():
                 if name.lower() == user.split(':')[0] and password.lower() == user.replace('\n','').split(':')[1]:
                     return True

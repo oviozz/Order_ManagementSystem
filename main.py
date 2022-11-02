@@ -8,7 +8,7 @@ import datetime
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1241, 863)
+        MainWindow.setFixedSize(1241, 863)
         MainWindow.setStyleSheet("background-color: rgb(36, 49, 60);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("background-color: rgb(36, 49, 60);")

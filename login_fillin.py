@@ -14,11 +14,11 @@ class RegisterCheck:
 
 class PasswordCheck:
     def sign_up_info(self, name, password):
-        with open("sign_up_form", "r+") as store:
-            store.write(f'{name.lower()}:{password.lower()}')
+        with open("sign_up_form.txt", "a+") as store:
+            store.write(f'{name.lower()}:{password.lower()}\n')
 
     def login_check(self, name, password,error_handle):
-        with open('sign_up_form', 'r') as store:
+        with open('sign_up_form.txt', 'r') as store:
             for user in store.readlines():
                 if name.lower() == user.split(':')[0] and password.lower() == user.replace('\n','').split(':')[1]:
                     return True

@@ -1,3 +1,4 @@
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from login_fillin import RegisterCheck, PasswordCheck, ChangeButtonColor
 from item_price import Meal, Drink
@@ -670,7 +671,7 @@ class Ui_MainWindow(object):
             receipt_send.item_load(items, self.receipt_label, self.tax_info, self.subtotal_info, self.final_info,
                                    str(datetime.datetime.now().date()))
         except:
-            receipt_send.none_recepit(self.receipt_label)
+            receipt_send.none_receipt(self.receipt_label)
 
 
     def reset(self):

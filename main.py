@@ -619,10 +619,12 @@ class Ui_MainWindow(object):
 
     def sign_up(self):
         check = RegisterCheck()
-        info_writeup = PasswordCheck()
+        change_button_color = ChangeButtonColor()
 
         check.signup_checking(self.name1,self.email1, self.password1, self.error_label, self.switch_tabs)
-        info_writeup.sign_up_info(self.name1.text(), self.password1.text())
+        change_button_color.log_in_click(self.login_button2)
+        change_button_color.sign_up_click(self.signup_button2)
+
 
     def log_in(self):
         check = RegisterCheck()
@@ -652,19 +654,24 @@ class Ui_MainWindow(object):
 
     def receipt_print(self):
         receipt_send = ReceiptPrint()
-        items = {self.item1.text():self.item1_spinbox.value(),
-                 self.item2.text():self.item2_spinbox.value(),
-                 self.item3.text():self.item3_spinbox.value(),
-                 self.item4.text():self.item4_spinbox.value(),
-                 self.item5.text():self.item5_spinbox.value(),
-                 self.drink1.text(): self.drink1_spinbox.value(),
-                 self.drink2.text():self.drink2_spinbox.value(),
-                 self.drink3.text():self.drink3_spinbox.value(),
-                 self.drink4.text():self.drink4_spinbox.value(),
-                 self.drink5.text():self.drink5_spinbox.value()
-                 }
+        try:
+            items = {self.item1.text(): self.item1_spinbox.value(),
+                     self.item2.text(): self.item2_spinbox.value(),
+                     self.item3.text(): self.item3_spinbox.value(),
+                     self.item4.text(): self.item4_spinbox.value(),
+                     self.item5.text(): self.item5_spinbox.value(),
+                     self.drink1.text(): self.drink1_spinbox.value(),
+                     self.drink2.text(): self.drink2_spinbox.value(),
+                     self.drink3.text(): self.drink3_spinbox.value(),
+                     self.drink4.text(): self.drink4_spinbox.value(),
+                     self.drink5.text(): self.drink5_spinbox.value()
+                     }
 
-        receipt_send.item_load(items, self.receipt_label,self.tax_info, self.subtotal_info, self.final_info, str(datetime.datetime.now().date()))
+            receipt_send.item_load(items, self.receipt_label, self.tax_info, self.subtotal_info, self.final_info,
+                                   str(datetime.datetime.now().date()))
+        except:
+            receipt_send.none_recepit(self.receipt_label)
+
 
     def reset(self):
         Ui_MainWindow.setupUi(self, MainWindow)

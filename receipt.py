@@ -17,3 +17,5 @@ class ReceiptPrint:
 
         label.setPlainText(f'{self.item_list}')
 
+    def none_receipt(self, receipt_label):
+        return receipt_label.setPlainText(f'{self.item_list}')
